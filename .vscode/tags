@@ -1,0 +1,39 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AlignIO	../plotReads.py	/^from Bio import SeqIO, AlignIO, SearchIO$/;"	kind:namespace	line:6
+DrawGenome	../plotReads.py	/^class DrawGenome(object):$/;"	kind:class	line:15
+SearchIO	../plotReads.py	/^from Bio import SeqIO, AlignIO, SearchIO$/;"	kind:namespace	line:6
+SeqIO	../plotReads.py	/^from Bio import SeqIO, AlignIO, SearchIO$/;"	kind:namespace	line:6
+__init__	../plotReads.py	/^    def __init__(self, consStart, consEnd, genomDNA, reads, posScale=1,$/;"	kind:member	line:17
+askopenfilename	../plotReads.py	/^from tkFileDialog import askopenfilename$/;"	kind:namespace	line:4
+bamFile1	../plotReads.py	/^bamFile1 = ''$/;"	kind:variable	line:414
+bamFile2	../plotReads.py	/^bamFile2 = ''$/;"	kind:variable	line:415
+division	../plotReads.py	/^from __future__ import division$/;"	kind:namespace	line:1
+drawAll	../plotReads.py	/^    def drawAll(self):$/;"	kind:member	line:42
+drawGenom	../plotReads.py	/^    def drawGenom(self):$/;"	kind:member	line:81
+drawReads	../plotReads.py	/^    def drawReads(self):$/;"	kind:member	line:125
+genBankPath	../plotReads.py	/^genBankPath = ''$/;"	kind:variable	line:413
+initGenomBams	../plotReads.py	/^def initGenomBams(genBankPat, bams):$/;"	kind:function	line:483
+initGui	../plotReads.py	/^    def initGui(self, root):$/;"	kind:member	line:46
+isMismatch	../plotReads.py	/^    def isMismatch(self, read):$/;"	kind:member	line:391
+loadFiles	../plotReads.py	/^def loadFiles():$/;"	kind:function	line:418
+load_Bam1	../plotReads.py	/^def load_Bam1():$/;"	kind:function	line:457
+load_Bam2	../plotReads.py	/^def load_Bam2():$/;"	kind:function	line:470
+load_GenBank	../plotReads.py	/^def load_GenBank():$/;"	kind:function	line:444
+moveInGenom	../plotReads.py	/^    def moveInGenom(self, tt):$/;"	kind:member	line:384
+moveLeft	../plotReads.py	/^    def moveLeft(self):$/;"	kind:member	line:352
+moveRight	../plotReads.py	/^    def moveRight(self):$/;"	kind:member	line:337
+plotReads.py	../plotReads.py	1;"	kind:file	line:1
+pysam	../plotReads.py	/^import pysam$/;"	kind:namespace	line:9
+re	../plotReads.py	/^import re$/;"	kind:namespace	line:2
+reset	../plotReads.py	/^    def reset(self):$/;"	kind:member	line:38
+scaleGenom	../plotReads.py	/^    def scaleGenom(self, tt):$/;"	kind:member	line:364
+showerror	../plotReads.py	/^from tkMessageBox import showerror$/;"	kind:namespace	line:5
+svg	../plotReads.py	/^import canvasvg as svg$/;"	kind:namespace	line:10
+t	../plotReads.py	/^import Tkinter as t$/;"	kind:namespace	line:3
+zoomIn	../plotReads.py	/^    def zoomIn(self):$/;"	kind:member	line:300
+zoomOut	../plotReads.py	/^    def zoomOut(self):$/;"	kind:member	line:276

@@ -128,6 +128,9 @@ class DrawGenome(object):
         after = 0
         count = 0
 
+        readEndsArray = []
+        stapel = 0
+
         returnToTop = 0
         numReads = len(self.reads)
         for r in xrange(0, numReads):
@@ -159,6 +162,7 @@ class DrawGenome(object):
                         if (rrEnd + rSep) < rStart:
                             recHigRead = i
                             after = returnToTop
+                            stapel += 1
                             break
                         else:
                             after += 6.5
@@ -177,6 +181,7 @@ class DrawGenome(object):
                             recHigRead = i
                             after = returnToTop
                             count = 0
+                            stapel += 1
                             self.convas.create_line(readStart + 31,
                                                     after + 63, readEnd + 30,
                                                     after + 63, width=5, fill=color)
@@ -203,6 +208,7 @@ class DrawGenome(object):
                             after = returnToTop
                             after += 6.5
                             count = 0
+                            stapel += 1
                         else:
                             after += 6.5
                             count += 1
@@ -221,6 +227,7 @@ class DrawGenome(object):
                             recHigRead = i
                             after = returnToTop
                             count = 0
+                            stapel += 1
                             self.convas.create_line(readStart + 31,
                                                     after + 63, readEnd + 30,
                                                     after + 63, width=5, fill=color)
@@ -249,6 +256,7 @@ class DrawGenome(object):
                     if (rrEnd + rSep) < rStart:
                         recHigRead = i
                         after = returnToTop
+                        stapel += 1
                         count = 0
                         self.convas.create_line(readStart + 31,
                                                 after + 63, readEnd + 30,
