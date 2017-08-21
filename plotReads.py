@@ -161,13 +161,49 @@ class DrawGenome(object):
                     # anything!
                     if rStart > self.genomEnd:
                         if (rrEnd + rSep) < rStart:
-                            recHigRead = i
-                            after = returnToTop
+                            after += 6.5
+                            count = 0
                             stapel += 1
+                            alreadySelected = []
                             break
                         else:
-                            after += 6.5
-                            count += 1
+                            if stapel == 0:
+                                readEndsArray += [rEnd]
+                            if count > 30 and numReads > 1:
+                                continue
+                            else:
+                                if stapel > 0:
+                                    try :
+                                        if readEndsArray[count] < rStart:
+                                            alreadySelected += [rEnd]
+                                            readEndsArray [count] = rEnd
+                                            after += 6.5
+                                            count += 1
+
+                                        else:
+                                            
+                                            #minEbene = readEndsArray.index(min(readEndsArray))
+                                            no_overlap = sorted([t for t in readEndsArray if t < rStart and t not in alreadySelected])
+                                            if no_overlap == []:
+                                                readEndsArray += [rEnd]
+                                                after += 6.5
+                                                count += 1
+
+                                            else:
+                                                readEndsArray [readEndsArray.index(no_overlap[0])] = rEnd
+                                                after += 6.5
+                                                count += 1
+
+                                    except IndexError:
+                                        readEndsArray += [rEnd]
+                                        after += 6.5
+                                        count += 1
+
+
+
+                                else:
+                                    after += 6.5
+                                    count += 1
                         # continue
 
                     # if only part of the read is showed, then cut it and show the part
@@ -183,20 +219,74 @@ class DrawGenome(object):
                             after = returnToTop
                             count = 0
                             stapel += 1
+                            alreadySelected = []
                             self.convas.create_line(readStart + 31,
                                                     after + 63, readEnd + 30,
                                                     after + 63, width=5, fill=color)
                             after += 6.5
                         else:
+                            # show only 30 reads pro Spalte (wichtig wegen zwei Bams
+                            if stapel == 0:
+                                readEndsArray += [rEnd]
                             if count > 30:
                                 continue
                             else:
+                                # wenn keine Ueberlappung gibt
+                                if stapel > 0:
+                                    try :
+                                        if readEndsArray[count] < rStart:
+                                            alreadySelected += [rEnd]
+                                            self.convas.create_line(readStart + 31,
+                                                                    after + 63, readEnd + 30,
+                                                                    after + 63, width=5, fill=color)
+                                            readEndsArray [count] = rEnd
+                                            after += 6.5
+                                            count += 1
+                                    
+                                        else:
+                                            
+                                            #minEbene = readEndsArray.index(min(readEndsArray))
+                                            no_overlap = sorted([t for t in readEndsArray if t < rStart and t not in alreadySelected])
+                                            if no_overlap == []:
+                                                afterU = (((len(readEndsArray) + 1) - (count+1)) * 6.5) + after
+                                                self.convas.create_line(readStart + 31,
+                                                                        afterU + 63, readEnd + 30,
+                                                                        afterU + 63, width=5, fill=color)
+                                                readEndsArray += [rEnd]
+                                                after += 6.5
+                                                count += 1
+
+                                            else:
+                                                afterU = (readEndsArray.index(no_overlap[0]) + 1) * 6.5
+                                                self.convas.create_line(readStart + 31,
+                                                                        afterU + 63, readEnd + 30,
+                                                                        afterU + 63, width=5, fill=color)
+                                                readEndsArray [readEndsArray.index(no_overlap[0])] = rEnd
+                                                after += 6.5
+                                                count += 1
+
+                                    except IndexError:
+                                        readEndsArray += [rEnd]
+                                        self.convas.create_line(readStart + 31,
+                                                                after + 63, readEnd + 30,
+                                                                after + 63, width=5, fill=color)
+                                        after += 6.5
+                                        count += 1
+
+                                else:
+                                    self.convas.create_line(readStart + 31,
+                                                            after + 63, readEnd + 30,
+                                                            after + 63, width=5, fill=color)
+                                    after += 6.5
+                                    count += 1
+                                """
                                 self.convas.create_line(readStart + 31,
                                                         after + 63, readEnd + 30,
                                                         after + 63, width=5, fill=color)
                                 after += 6.5
                                 count += 1
                                 # continue
+                                """
 
                 # if the reads are outside the display area from the left, don't draw
                 # the outside reads! fix the problem with svg!
@@ -207,12 +297,46 @@ class DrawGenome(object):
                         if (rrEnd + rSep) < rStart:
                             recHigRead = i
                             after = returnToTop
-                            after += 6.5
                             count = 0
                             stapel += 1
+                            alreadySelected = []
                         else:
-                            after += 6.5
-                            count += 1
+                            if stapel == 0:
+                                readEndsArray += [rEnd]
+                            if count > 30 and numReads > 1:
+                                continue
+                            else:
+                                if stapel > 0:
+                                    try :
+                                        if readEndsArray[count] < rStart:
+                                            alreadySelected += [rEnd]
+                                            readEndsArray [count] = rEnd
+                                            after += 6.5
+                                            count += 1
+
+                                        else:
+                                            
+                                            #minEbene = readEndsArray.index(min(readEndsArray))
+                                            no_overlap = sorted([t for t in readEndsArray if t < rStart and t not in alreadySelected])
+                                            if no_overlap == []:
+                                                readEndsArray += [rEnd]
+                                                after += 6.5
+                                                count += 1
+
+                                            else:
+                                                readEndsArray [readEndsArray.index(no_overlap[0])] = rEnd
+                                                after += 6.5
+                                                count += 1
+
+                                    except IndexError:
+                                        readEndsArray += [rEnd]
+                                        after += 6.5
+                                        count += 1
+
+
+                                else:
+                                    after += 6.5
+                                    count += 1
                         # continue
 
                     # if only part of the read is showed, then cut it and show the
@@ -229,21 +353,67 @@ class DrawGenome(object):
                             after = returnToTop
                             count = 0
                             stapel += 1
+                            alreadySelected = []
                             self.convas.create_line(readStart + 31,
                                                     after + 63, readEnd + 30,
                                                     after + 63, width=5, fill=color)
                             after += 6.5
 
                         else:
-                            if count > 30:
+                            if stapel == 0:
+                                readEndsArray += [rEnd]
+                            if count > 30 and numReads > 1:
                                 continue
                             else:
-                                self.convas.create_line(readStart + 31,
-                                                        after + 63, readEnd + 30,
-                                                        after + 63, width=5, fill=color)
-                                after += 6.5
-                                count += 1
-                                # continue
+                                # wenn keine Ueberlappung gibt
+                                if stapel > 0:
+                                    try :
+                                        if readEndsArray[count] < rStart:
+                                            alreadySelected += [rEnd]
+                                            self.convas.create_line(readStart + 31,
+                                                                    after + 63, readEnd + 30,
+                                                                    after + 63, width=5, fill=color)
+                                            readEndsArray [count] = rEnd
+                                            after += 6.5
+                                            count += 1
+                                    
+                                        else:
+                                            
+                                            #minEbene = readEndsArray.index(min(readEndsArray))
+                                            no_overlap = sorted([t for t in readEndsArray if t < rStart and t not in alreadySelected])
+                                            if no_overlap == []:
+                                                afterU = (((len(readEndsArray) + 1) - (count+1)) * 6.5) + after
+                                                self.convas.create_line(readStart + 31,
+                                                                        afterU + 63, readEnd + 30,
+                                                                        afterU + 63, width=5, fill=color)
+                                                readEndsArray += [rEnd]
+                                                after += 6.5
+                                                count += 1
+
+                                            else:
+                                                afterU = (readEndsArray.index(no_overlap[0]) + 1) * 6.5
+                                                self.convas.create_line(readStart + 31,
+                                                                        afterU + 63, readEnd + 30,
+                                                                        afterU + 63, width=5, fill=color)
+                                                readEndsArray [readEndsArray.index(no_overlap[0])] = rEnd
+                                                after += 6.5
+                                                count += 1
+
+                                    except IndexError:
+                                        readEndsArray += [rEnd]
+                                        self.convas.create_line(readStart + 31,
+                                                                after + 63, readEnd + 30,
+                                                                after + 63, width=5, fill=color)
+                                        after += 6.5
+                                        count += 1
+
+                                else:
+                                    self.convas.create_line(readStart + 31,
+                                                            after + 63, readEnd + 30,
+                                                            after + 63, width=5, fill=color)
+                                    after += 6.5
+                                    count += 1
+
 
                 # problem: see 12100
                 # the problem is because of the position of "after"!
@@ -314,52 +484,12 @@ class DrawGenome(object):
                                     after += 6.5
                                     count += 1
 
-
-                                    """
-                                        afterU = after + ((minEbene+1)*6.5)
-                                        if readEndsArray[minEbene] > rStart:
-                                            self.convas.create_line(readStart + 31,
-                                                                    afterU + 63, readEnd + 30,
-                                                                    afterU + 63, width=5, fill=color)
-                                            readEndsArray += [rEnd]
-                                            after += 6.5
-                                            count += 1
-                                        else:
-                                            self.convas.create_line(readStart + 31,
-                                                                    after + 63, readEnd + 30,
-                                                                    after + 63, width=5, fill=color)
-                                            readEndsArray [minEbene] = rEnd
-                                            after += 6.5
-                                            count += 1
-                                except IndexError:
-                                    readEndsArray += [rEnd]
-                                    self.convas.create_line(readStart + 31,
-                                                            after + 63, readEnd + 30,
-                                                            after + 63, width=5, fill=color)
-                                    after += 6.5
-                                    count += 1  """
-
-
                             else:
                                 self.convas.create_line(readStart + 31,
                                                         after + 63, readEnd + 30,
                                                         after + 63, width=5, fill=color)
                                 after += 6.5
                                 count += 1
-
-
-                    """
-                        # show only 30 reads pro Spalte (wichtig wegen zwei
-                        # Bams)
-                        if count > 30:
-                            continue
-                        else:
-                            self.convas.create_line(readStart + 31,
-                                                    after + 63, readEnd + 30,
-                                                    after + 63, width=5, fill=color)
-                            after += 6.5
-                            count += 1
-                    """
 
             returnToTop = 210
             count = 0
